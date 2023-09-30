@@ -19,6 +19,23 @@ defineProps({
     required: true
   }
 })
+
+// methods() {
+
+//    async getApplications() {
+//     try{
+//       const response = await fetch("https://someurl.com/", {
+//         headers: {
+//           'Accept': 'application/json',
+//         },
+//       });
+//       const data = await response.json();
+
+//     } catch (error){
+//       console.log("theres been an error", error)
+//     }
+//   }
+// }
 </script>
 
 <style scoped>
