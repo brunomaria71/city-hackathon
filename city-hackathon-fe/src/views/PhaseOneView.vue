@@ -1,14 +1,13 @@
 <template>
   <div class="phaseOne">
     <h1>This is Phase One</h1>
-    <PhaseOneTable/>
+    <PhaseOneTable />
   </div>
 </template>
 
 <script setup>
-import PhaseOneTable from "../components/phaseOneTable.vue"
+import PhaseOneTable from '../components/PhaseOneTable.vue'
 </script>
-
 
 <style>
 @media (min-width: 1024px) {
