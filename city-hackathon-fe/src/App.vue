@@ -1,10 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
 import ElementNav from './components/ElementNav.vue'
-
 import './index.css'
-import ElementNavVue from './components/ElementNav.vue'
 </script>
 
 <template>
