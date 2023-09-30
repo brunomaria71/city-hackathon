@@ -13,8 +13,8 @@ import './index.css'
         <HelloWorld msg="You did it!" />
 
         <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">About</RouterLink>
+          <!-- <RouterLink to="/phaseOne">Phase 1</RouterLink> -->
+          <RouterLink to="/phaseOne">Phase One</RouterLink>
         </nav>
       </div>
     </header>
