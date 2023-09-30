@@ -1,12 +1,3 @@
-<script setup>
-defineProps({
-  msg: {
-    type: String,
-    required: true
-  }
-})
-</script>
-
 <template>
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
@@ -14,13 +5,21 @@ defineProps({
       You’ve successfully created a project with
       <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
       <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>.
+      <t-input value="Hello world" name="my-input" />
     </h3>
-    <span
-      class="inline-flex items-center rounded-md bg-red-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
-      >Badge</span
-    >
   </div>
 </template>
+
+<script setup>
+import TInput from 'vue-tailwind/dist/components'
+
+defineProps({
+  msg: {
+    type: String,
+    required: true
+  }
+})
+</script>
 
 <style scoped>
 h1 {
