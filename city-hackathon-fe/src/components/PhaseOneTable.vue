@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Phase One Table</h1>
+    <h5 class="mb-2 text-xl font-medium leading-tight text-neutral-800 dark:text-neutral-50"> Phase One Table </h5>
     <div class="mb-3">
       <div class="relative mb-4 flex w-full flex-wrap items-stretch">
         <input v-model="searchTerm" type="text" class="w-full p-2 rounded border border-gray-300"
