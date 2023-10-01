@@ -5,36 +5,32 @@
       <div class="mb-3">
   <div class="relative mb-4 flex w-full flex-wrap items-stretch">
     <input
-      id="datatable-search-input"
-      type="search"
-      class="relative m-0 -mr-0.5 block w-[1px] min-w-0 flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-      placeholder="Search"
-      aria-label="Search"
-      aria-describedby="button-addon1" />
+      v-model="searchTerm"
+      type="text"
+      class="w-full p-2 rounded border border-gray-300"
+      placeholder="Search..."
+    />
   </div>
 </div>
 <div id="datatable"></div>
     <div class="flex flex-col">
     <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-      <!-- <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8"> -->
       <div class="inline-block w-full">
         <div class="overflow-hidden">
           <table class="min-w-full text-left text-sm font-light">
             <thead class="border-b font-medium dark:border-neutral-500">
               <tr>
                 <th scope="col" class="px-6 py-4">ID</th>
-                <th scope="col" class="px-6 py-4">First</th>
-                <th scope="col" class="px-6 py-4">Last</th>
+                <th scope="col" class="px-6 py-4">Name</th>
                 <th scope="col" class="px-6 py-4">Status</th>
-                <th scope="col" class="px-6 py-4">Info</th>
+                <th scope="col" class="px-6 py-4">stage</th>
               </tr>
             </thead>
             <tbody>
-              <tr class="border-b dark:border-neutral-500">
-                <td class="whitespace-nowrap px-6 py-4 font-medium">{{ applicantId }}</td>
-                <td class="whitespace-nowrap px-6 py-4">{{firstName}}</td>
-                <td class="whitespace-nowrap px-6 py-4">{{lastName}}</td>
-                <td class="whitespace-nowrap px-6 py-4">{{ status }}</td>
+              <tr v-for='item in items' :key="item.UID" class="border-b dark:border-neutral-500">
+                <td class="whitespace-nowrap px-6 py-4 font-medium">{{ item.application_data.applicant_ID }}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{item.applicant_data.name}}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{ item.application_data.is_complete?"yes": "no" }}</td>
                 <td class="nowrap px-6 py-4">
                     <button
   type="button"
@@ -78,19 +74,33 @@ export default {
 
   data() {
     return {
+      items: [],
+      applicantItems: [],
       applicantId:'',
+      name:'',
+      searchTerm: "",
       error: null
     }
   },
   mounted() {
      this.getApplications()
-    // debugger; // eslint-disable-line no-debugger
-
+  },
+  computed: {
+    filteredData() {
+      const searchTerm = this.searchTerm.toLowerCase();
+      return this.items.filter(() => {
+        return searchTerm
+        // (
+          // row.column1.toLowerCase().includes(searchTerm) ||
+          // row.column2.toLowerCase().includes(searchTerm)
+          // Add more conditions for additional columns
+        // );
+      });
+    },
   },
 
   methods: {
     async getApplications() {
-      // debugger; // eslint-disable-line no-debugger
       try {
         const response = await fetch("http://10.200.0.193:3000/applications", {
           headers: {
@@ -98,13 +108,13 @@ export default {
           },
         });
         const data = await response.json()
-        console.log(data)
-        this.applicantId = data.data.applicant_ID
+      this.items = data.data;
       } catch (error) {
         console.error('Error fetching data:', error);
         alert("Error fetching data")
-      }2
+      }
     },
+   
   },
 // instance()  {new Datatable(document.getElementById('datatable'), data)},
 
