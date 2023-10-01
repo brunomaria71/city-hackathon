@@ -1,16 +1,18 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import ElementNav from './components/ElementNav.vue'
+import HeaderNav from './components/HeaderNav.vue';
 import './index.css'
 </script>
 
 <template>
   <div>
-    <header>
+    <!-- <header>
       <div class="wrapper">
         <ElementNav />
       </div>
-    </header>
+    </header> -->
+    <HeaderNav />
 
     <RouterView />
   </div>
