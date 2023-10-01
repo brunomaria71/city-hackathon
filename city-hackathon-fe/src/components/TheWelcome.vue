@@ -36,11 +36,7 @@
         Schedule Webinar Step 2
       </div>
       <div class="p-6">
-        <h5
-          class="mb-2 text-5xl text-green-400 font-medium leading-tight text-neutral-800 dark:text-neutral-50"
-        >
-          15K
-        </h5>
+        <h5 class="mb-2 text-5xl text-lime-400 font-medium leading-tight">15K</h5>
         <p class="text-sm text-gray-400">Applications up 18%</p>
         <br />
         <button
