@@ -1,6 +1,5 @@
 <template>
   <div class="phaseOne">
-    <h1>This is Phase One</h1>
     <PhaseOneTable />
   </div>
 </template>
