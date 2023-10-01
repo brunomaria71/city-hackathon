@@ -26,7 +26,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr v-for='item in items' :key="item.UID" class="border-b dark:border-neutral-500">
+              <tr v-for='item in filteredItems' :key="item.UID" class="border-b dark:border-neutral-500">
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{ item.application_data.applicant_ID }}</td>
                 <td class="whitespace-nowrap px-6 py-4">{{item.applicant_data.name}}</td>
                 <td class="whitespace-nowrap px-6 py-4">{{ item.application_data.is_complete ? "Complete": "Incomplete" }}</td>
@@ -65,16 +65,12 @@ export default {
   },
   computed: {
     filteredItems() {
-      const searchTerm = this.searchTerm;
-      // eslint-disable-next-line no-debugger
-      debugger
-      
-      return this.complete_items.filter((item) => {
+      const searchTerm = this.searchTerm.toLowerCase();
+      return this.items.filter((item) => {
         return (
-          item.application_data.applicant_ID.includes(searchTerm) ||
-          item.applicant_data.name.includes(searchTerm) ||
-          (item.application_data.is_complete ? "Complete" : "Incomplete").includes(searchTerm)
-          // Add more conditions for additional columns if needed
+          item.application_data.applicant_ID.toLowerCase().includes(searchTerm) ||
+          item.applicant_data.name.toLowerCase().includes(searchTerm) ||
+          (item.application_data.is_complete ? "Complete" : "Incomplete").toLowerCase().includes(searchTerm)
         );
       });
     },
