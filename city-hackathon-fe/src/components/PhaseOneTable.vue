@@ -1,6 +1,6 @@
 <template>
   <div class="flex justify-between mt-8">
-      <h2 class="text-4xl font-bold dark:text-white flex align-middle justify-center">Phase {{selected_phase}} - Pre Check Applications</h2>
+      <h2 class="text-4xl font-bold dark:text-white flex align-middle justify-center">Phase {{selected_phase}} - {{phase_map[selected_phase]}}</h2>
       <router-link to="/">
         <a href="#">Go Back</a>
       </router-link>
@@ -90,6 +90,12 @@ export default {
       searchTerm: '',
       error: null,
       selected_phase: 1,
+      phase_map:{
+        1: "Pre Application",
+        2: "Webinar Onboarding",
+        3: "Approval Process",
+        4: "Approved"
+      }
     }
   },
   mounted() {
