@@ -6,11 +6,11 @@ import './index.css'
 
 <template>
   <div>
-    <header>
+    <!-- <header>
       <div class="wrapper">
         <ElementNav />
       </div>
-    </header>
+    </header> -->
 
     <RouterView />
   </div>
