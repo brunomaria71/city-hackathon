@@ -28,6 +28,7 @@
                 />
               </svg>
             </router-link>
+            <h5 class="text-center text-white text-2xl font-bold">LIFERAFT</h5>
 
             <div class="flex flex-col justify-between h-full">
               <router-link to="/">
