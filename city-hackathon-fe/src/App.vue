@@ -1,6 +1,7 @@
 <script setup>
 import { RouterView } from 'vue-router'
 import ElementNav from './components/ElementNav.vue'
+import HeaderNav from './components/HeaderNav.vue';
 import './index.css'
 </script>
 
@@ -11,6 +12,7 @@ import './index.css'
         <ElementNav />
       </div>
     </header> -->
+    <HeaderNav />
 
     <RouterView />
   </div>

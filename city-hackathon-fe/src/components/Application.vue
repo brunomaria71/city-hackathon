@@ -1,6 +1,6 @@
 <template>
-    <h2 class="text-4xl font-bold dark:text-white flex align-middle justify-center my-12">Application Summary</h2>
-    <div class="w-full p-4 text-center bg-gray-800 border border-gray-700 rounded-lg shadow sm:p-8 dark:bg-white dark:border-gray-200 my-10">
+    <h1 class="text-5xl font-bold dark:text-white flex align-middle justify-center my-12">Application Summary</h1>
+    <div class="w-full p-4 text-center text-gray-300 bg-gray-500 border border-gray-300 rounded-lg shadow sm:p-8 dark:text-gray-700 dark:bg-white dark:border-gray-200 my-10">
     <table class="min-w-full text-left text-sm font-light">
             <thead class="border-b font-medium dark:border-neutral-500">
               <tr>
@@ -13,7 +13,6 @@
             <tbody>
               <tr>
                 <td class="whitespace-nowrap px-6 py-9 font-bold text-blue-500">
-                
                     <p v-if="this.application.applicant_data">{{ this.application.applicant_data.name }}</p>    
                 </td>
                 <td class="whitespace-nowrap px-6 py-9">{{ this.application.applicant_ID }}</td>
