@@ -1,4 +1,3 @@
-
 <template>
     <div>
       <h1>Phase One Table</h1>
@@ -23,35 +22,23 @@
                 <th scope="col" class="px-6 py-4">ID</th>
                 <th scope="col" class="px-6 py-4">Name</th>
                 <th scope="col" class="px-6 py-4">Status</th>
-                <th scope="col" class="px-6 py-4">stage</th>
+                <th scope="col" class="px-6 py-4">Info</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for='item in items' :key="item.UID" class="border-b dark:border-neutral-500">
                 <td class="whitespace-nowrap px-6 py-4 font-medium">{{ item.application_data.applicant_ID }}</td>
                 <td class="whitespace-nowrap px-6 py-4">{{item.applicant_data.name}}</td>
-                <td class="whitespace-nowrap px-6 py-4">{{ item.application_data.is_complete?"yes": "no" }}</td>
+                <td class="whitespace-nowrap px-6 py-4">{{ item.application_data.is_complete ? "Complete": "Incomplete" }}</td>
                 <td class="nowrap px-6 py-4">
                     <button
-  type="button"
-  @click="mobileMenuOpen = false"
-  class="inline-block rounded bg-gray-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
-  Button
-</button>
+                      type="button"
+                      @click="mobileMenuOpen = false"
+                      class="inline-block rounded bg-gray-800 px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#3b71ca] transition duration-150 ease-in-out hover:bg-primary-600 hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:bg-primary-600 focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] focus:outline-none focus:ring-0 active:bg-primary-700 active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.3),0_4px_18px_0_rgba(59,113,202,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(59,113,202,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(59,113,202,0.2),0_4px_18px_0_rgba(59,113,202,0.1)]">
+                      Button
+                    </button>
                 </td>
               </tr>
-              <!-- <tr class="border-b dark:border-neutral-500">
-                <td class="whitespace-nowrap px-6 py-4 font-medium">2</td>
-                <td class="whitespace-nowrap px-6 py-4">Jacob</td>
-                <td class="whitespace-nowrap px-6 py-4">Thornton</td>
-                <td class="whitespace-nowrap px-6 py-4">@fat</td>
-              </tr>
-              <tr class="border-b dark:border-neutral-500">
-                <td class="whitespace-nowrap px-6 py-4 font-medium">3</td>
-                <td class="whitespace-nowrap px-6 py-4">Larry</td>
-                <td class="whitespace-nowrap px-6 py-4">Wild</td>
-                <td class="whitespace-nowrap px-6 py-4">@twitter</td>
-              </tr> -->
             </tbody>
           </table>
         </div>
@@ -61,23 +48,14 @@
     </div>
   </template>
   
-  <script>
-  import {
-  Datatable,
-  initTE,
-  } from "tw-elements";
-
-initTE({ Datatable });
-
+<script>
 export default {
   name: "PhaseOneTable",
 
   data() {
     return {
+      complete_items: [],
       items: [],
-      applicantItems: [],
-      applicantId:'',
-      name:'',
       searchTerm: "",
       error: null
     }
@@ -86,15 +64,18 @@ export default {
      this.getApplications()
   },
   computed: {
-    filteredData() {
-      const searchTerm = this.searchTerm.toLowerCase();
-      return this.items.filter(() => {
-        return searchTerm
-        // (
-          // row.column1.toLowerCase().includes(searchTerm) ||
-          // row.column2.toLowerCase().includes(searchTerm)
-          // Add more conditions for additional columns
-        // );
+    filteredItems() {
+      const searchTerm = this.searchTerm;
+      // eslint-disable-next-line no-debugger
+      debugger
+      
+      return this.complete_items.filter((item) => {
+        return (
+          item.application_data.applicant_ID.includes(searchTerm) ||
+          item.applicant_data.name.includes(searchTerm) ||
+          (item.application_data.is_complete ? "Complete" : "Incomplete").includes(searchTerm)
+          // Add more conditions for additional columns if needed
+        );
       });
     },
   },
@@ -109,6 +90,7 @@ export default {
         });
         const data = await response.json()
       this.items = data.data;
+      this.complete_items = data.data;
       } catch (error) {
         console.error('Error fetching data:', error);
         alert("Error fetching data")
@@ -116,13 +98,8 @@ export default {
     },
    
   },
-// instance()  {new Datatable(document.getElementById('datatable'), data)},
-
-// searchTable() {document.getElementById('datatable-search-input').addEventListener('input', (e) => {
-//   instance.search(e.target.value);
-// })},
 }
-  </script>
+</script>
   
   
   <style>
